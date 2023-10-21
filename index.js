@@ -28,6 +28,7 @@ async function run() {
 
     const database = client.db("userDB");
     const userCollection = database.collection("users");
+    const cartsCollection = database.collection("carts")
     // Send a ping to confirm a successful connection
    app.get('/users', async(req, res) =>{
     const cursor = userCollection.find();
@@ -81,6 +82,15 @@ async function run() {
       const user = req.body;
       console.log('new user',user);
       const result = await userCollection.insertOne(user);
+      res.send(result);
+      
+    
+    
+    })
+    app.post('/carts', async(req, res)=>{
+      const user = req.body;
+      console.log('new user',user);
+      const result = await cartsCollection.insertOne(user);
       res.send(result);
       
     
